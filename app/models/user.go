@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-var ADMIN_LOGINS = []string{"huacnlee"}
+var ADMIN_LOGINS = []string{"admin"}
 
 type User struct {
 	BaseModel

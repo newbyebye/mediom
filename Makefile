@@ -5,10 +5,10 @@ install:
 	@go build -o $GOPATH/bin/train github.com/huacnlee/train/cmd
 	@cd app; go get
 server:
-	revel run github.com/huacnlee/mediom
+	revel run github.com/newbyebye/mediom
 release:
 	@make assets
-	GOOS=linux GOARCH=amd64 revel package github.com/huacnlee/mediom prod
+	GOOS=linux GOARCH=amd64 revel package github.com/newbyebye/mediom prod
 assets:
 	@train --source app/assets --out public
 test:

@@ -18,8 +18,8 @@ https://golang.org/dl/
 ```
 go get github.com/revel/cmd/revel
 cd $GOPATH/src
-git clone https://github.com/huacnlee/mediom.git
-cd github.com/huacnlee/mediom
+git clone https://github.com/newbyebye/mediom.git
+cd github.com/newbyebye/mediom
 make install
 make server
 ```
@@ -40,4 +40,4 @@ make release
 
 ## Try it online:
 
-http://115.29.238.54
+http://www.newbyebye.com

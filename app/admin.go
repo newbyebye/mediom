@@ -2,7 +2,7 @@ package app
 
 import (
 	"fmt"
-	"github.com/huacnlee/mediom/app/models"
+	"github.com/newbyebye/mediom/app/models"
 	"github.com/qor/admin"
 	"github.com/qor/publish"
 	"github.com/qor/qor"

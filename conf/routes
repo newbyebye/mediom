@@ -40,8 +40,16 @@ POST    /notifications/clear      Notifications.Clear
 
 GET     /captcha                  App.Captcha
 
-GET     /:login             Users.Show
-GET     /:login/topics      Users.Topics
+GET     /nodes              Nodes.Index
+GET     /nodes/:id/edit     Nodes.Edit
+POST    /nodes/:id/delete   Nodes.Delete
+POST    /nodes/:id     		Nodes.Update
+POST    /nodes              Nodes.Create
+
+GET     /self/:login             Users.Show
+GET     /self/:login/topics      Users.Topics
+
+
 
 
 

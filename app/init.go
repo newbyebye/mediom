@@ -2,7 +2,7 @@ package app
 
 import (
 	"github.com/cbonello/revel-csrf"
-	"github.com/huacnlee/mediom/app/models"
+	"github.com/newbyebye/mediom/app/models"
 	"github.com/huacnlee/train"
 	"github.com/revel/revel"
 	"strings"
@@ -28,7 +28,7 @@ func init() {
 
 	train.Config.AssetsPath = "app/assets"
 	if !revel.DevMode {
-		train.Config.AssetsPath = "src/github.com/huacnlee/mediom/app/assets"
+		train.Config.AssetsPath = "src/github.com/huacnlee/newbyebye/app/assets"
 	}
 	train.Config.SASS.DebugInfo = false
 	train.Config.SASS.LineNumbers = false
@@ -39,7 +39,7 @@ func init() {
 
 	revel.OnAppStart(func() {
 		models.InitDatabase()
-		initAdmin()
+		//initAdmin()
 
 		if revel.DevMode {
 			train.ConfigureHttpHandler(nil)

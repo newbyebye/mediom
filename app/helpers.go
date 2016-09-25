@@ -2,7 +2,7 @@ package app
 
 import (
 	"fmt"
-	. "github.com/huacnlee/mediom/app/models"
+	. "github.com/newbyebye/mediom/app/models"
 	"github.com/huacnlee/timeago"
 	"github.com/revel/revel"
 	"html/template"
@@ -263,10 +263,16 @@ func init() {
 
 		defaultName := "请选择"
 
+		fmt.Print("###name %v value %v val =%v #\n", nameKey, valueKey, objsVal)
 		for i := 0; i < objsVal.Len(); i++ {
-			val := objsVal.Index(i)
+			val := objsVal.Index(i).Elem()
+			
 			nameField = val.FieldByName(nameKey)
 			valueField = val.FieldByName(valueKey)
+
+			fmt.Print("%v", nameField);
+			fmt.Print("%v", valueField);
+
 			subs = append(subs, fmt.Sprintf(`
                <li data-id="%v"><a href="#">%v</a></li>
             `, valueField.Int(), nameField.String()))

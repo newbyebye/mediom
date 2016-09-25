@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/acsellers/inflections"
 	"github.com/dchest/captcha"
-	. "github.com/huacnlee/mediom/app/models"
+	. "github.com/newbyebye/mediom/app/models"
 	"github.com/revel/revel"
 	"reflect"
 	"strings"
