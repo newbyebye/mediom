@@ -2,7 +2,7 @@ package models
 
 import (
 	"github.com/revel/revel"
-	"time"
+	//"time"
 )
 
 type Node struct {
@@ -12,8 +12,6 @@ type Node struct {
 	ParentId    *int
 	Sort        int `sql:"default: 0; not null"`
 	Children    []Node `gorm:"ForeignKey:ParentId"`
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
 }
 
 func (n *Node) validate() (v revel.Validation) {

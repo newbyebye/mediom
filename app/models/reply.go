@@ -13,8 +13,6 @@ type Reply struct {
 	TopicId   int32 `sql:"not null"`
 	Topic     Topic
 	Body      string `sql:"type:text;not null"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
 }
 
 func (r *Reply) BeforeCreate() (err error) {

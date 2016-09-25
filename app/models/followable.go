@@ -2,18 +2,16 @@ package models
 
 import (
 	"fmt"
-	"time"
+	//"time"
 )
 
 type Followable struct {
-	Id         int32
+	BaseModel
 	FollowType string `sql:"size:20; not null"`
 	TopicId    int32 `sql:"not null"`
 	Topic      Topic
 	UserId     int32 `sql:"not null"`
 	User       User
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
 }
 
 func (u User) isFollowed(ftype string, t Topic) bool {

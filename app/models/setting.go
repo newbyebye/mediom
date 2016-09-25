@@ -7,7 +7,7 @@ import (
 )
 
 type Setting struct {
-	Id  int32
+	BaseModel
 	Key string `sql:"not null"`
 	Val string `sql:"type: text; not null"`
 }

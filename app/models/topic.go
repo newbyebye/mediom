@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+
 type Topic struct {
 	BaseModel
 	UserId             int32 `sql:"not null"`
@@ -16,6 +17,8 @@ type Topic struct {
 	Node               Node
 	Title              string `sql:"size:300;not null"`
 	Body               string `sql:"type:text;not null"`
+	Address     	   string
+    Time        	   string
 	Replies            []Reply
 	RepliesCount       int32 `sql:"not null;default: 0"`
 	LastActiveMark     int64 `sql:"not null; default: 0"`
@@ -27,8 +30,6 @@ type Topic struct {
 	StarsCount         int32 `sql:"not null; default: 0"`
 	WatchesCount       int32 `sql:"not null; default: 0"`
 	Rank               int32 `sql:"not null; default: 0"`
-	CreatedAt          time.Time
-	UpdatedAt          time.Time
 }
 
 const (

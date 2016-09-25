@@ -13,8 +13,10 @@ var db *gorm.DB
 var DB *gorm.DB
 
 type BaseModel struct {
-	Id        int32
-	DeletedAt *time.Time
+	Id        int32	`gorm:"primary_key"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time `sql:"index"`
 }
 
 func (m BaseModel) NewRecord() bool {
@@ -40,10 +42,10 @@ func InitDatabase() {
 		panic(err)
 	}
 
-	db.LogMode(false)
+	db.LogMode(true)
 	logger = Logger{log.New(os.Stdout, "  ", 0)}
 	db.SetLogger(logger)
-	db.AutoMigrate(&User{}, &Topic{}, &Reply{}, &Node{}, &Followable{}, &Notification{}, &Setting{})
+	db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").AutoMigrate(&User{}, &Topic{}, &Reply{}, &Node{}, &Followable{}, &Notification{}, &Setting{})
 	db.Model(Node{}).AddIndex("index_on_parent_id", "parent_id")
 	db.Model(Node{}).AddIndex("index_on_parent_id_and_sort", "parent_id", "sort")
 	db.Model(User{}).AddUniqueIndex("index_on_login", "login")

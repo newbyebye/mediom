@@ -2,11 +2,11 @@ package models
 
 import (
 	"fmt"
-	"time"
+	//"time"
 )
 
 type Notification struct {
-	Id             int32
+	BaseModel
 	NotifyType     string `sql:"not null"`
 	Read           bool   `sql:"default: false;not null"`
 	UserId         int32  `sql:"not null"`
@@ -15,8 +15,6 @@ type Notification struct {
 	Actor          User
 	NotifyableType string `sql:"not null"`
 	NotifyableId   int32  `sql:"not null"`
-	CreatedAt      time.Time
-	UpdatedAt      time.Time
 }
 
 type NotifyInfo struct {

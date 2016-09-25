@@ -13,12 +13,17 @@ import (
 )
 
 var (
-	shareSites     = []string{"twitter", "weibo", "facebook", "google_plus", "email"}
+	shareSites     = []string{
+		//"twitter", 
+		"weibo", 
+		//"facebook", 
+		//"google_plus", 
+		"email"}
 	shareSiteIcons = map[string]string{
-		"twitter":     "twitter",
+		//"twitter":     "twitter",
 		"weibo":       "weibo",
-		"facebook":    "facebook-square",
-		"google_plus": "google-plus-square",
+		//"facebook":    "facebook-square",
+		//"google_plus": "google-plus-square",
 		"email":       "envelope",
 	}
 )
@@ -121,7 +126,7 @@ func init() {
 				return out
 			}
 
-			out = fmt.Sprintf("<a href=\"/%v\" class=\"uname\"><img src=\"%v\" class=\"media-object avatar-%v\" /></a>", template.HTMLEscapeString(u.Login), u.GavatarURL(size), size)
+			out = fmt.Sprintf("<a href=\"/self/%v\" class=\"uname\"><img src=\"%v\" class=\"media-object avatar-%v\" /></a>", template.HTMLEscapeString(u.Login), u.GavatarURL(size), size)
 		}
 
 		return template.HTML(out)

@@ -79,6 +79,8 @@ AppView = Backbone.View.extend
     a = $(e.target)
     topicId = a.data("id")
     count = parseInt(a.data("count"))
+    if topicId == undefined
+      return false
     if a.hasClass("followed")
       $.post("/topics/#{topicId}/unstar").done (res) ->
         newCount = count - 1
@@ -98,6 +100,8 @@ AppView = Backbone.View.extend
   toggleWatch: (e) ->
     a = $(e.target)
     topicId = a.data("id")
+    if topicId == undefined
+      return false
     if a.hasClass("followed")
       $.post("/topics/#{topicId}/unwatch").done (res) ->
         a.removeClass("followed")

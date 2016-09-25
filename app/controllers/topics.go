@@ -51,6 +51,8 @@ func (c Topics) Create() revel.Result {
 	c.Params.Bind(&nodeId, "node_id")
 	t := &Topic{
 		Title:  c.Params.Get("title"),
+		Time: 	c.Params.Get("time"),
+		Address: c.Params.Get("address"),
 		Body:   c.Params.Get("body"),
 		NodeId: nodeId,
 	}
@@ -100,6 +102,9 @@ func (c Topics) Update() revel.Result {
 	t.NodeId = int32(nodeId)
 	t.Title = c.Params.Get("title")
 	t.Body = c.Params.Get("body")
+	t.Time = c.Params.Get("time")
+	t.Address = c.Params.Get("address")
+	
 	v := UpdateTopic(&t)
 	if v.HasErrors() {
 		c.RenderArgs["topic"] = t

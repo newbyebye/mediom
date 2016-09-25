@@ -26,8 +26,6 @@ type User struct {
 	Location    string
 	Topics      []Topic
 	Replies     []Reply
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
 }
 
 func (u User) BeforeCreate() error {
