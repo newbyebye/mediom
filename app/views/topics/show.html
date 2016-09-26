@@ -7,6 +7,8 @@
 			<div class="panel-heading media clearfix">
 				<div class="media-body">
 				    <h1 class="media-heading">{{.topic.Title}} {{awesome_icon_tag .topic}}</h1>
+				    <p>上课时间: {{.topic.Time}}</p>
+				    <p>上课地点: {{.topic.Address}}</p>
 				    <div class="info">
 							{{node_name_tag .topic.Node}}
 							{{user_name_tag .topic.User}} 发表于 {{timeago .topic.CreatedAt}}

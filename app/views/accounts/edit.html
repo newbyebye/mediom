@@ -12,31 +12,53 @@
 					{{.validation | error_messages}}
 					<input type="hidden" name="csrf_token" value="{{.csrf_token}}" />
 					<div class="form-group">
-						<label for="user-login">帐号</label>
-						<input type="readonly" class="form-control" name="login" value="{{.current_user.Login}}">
+						<div class="input-group col-xs-9">
+							<span class="input-group-addon" id="twitter-addon">帐号</span>
+							<input type="readonly" class="form-control" name="login" value="{{.current_user.Login}}">
+						</div>
 					</div>
+
 					<div class="form-group">
-						<label for="user-email">Email</label>
-						<input type="email" class="form-control" name="email" id="user-email" value={{.current_user.Email}}>
+						<div class="input-group col-xs-9">
+							<span class="input-group-addon" id="twitter-addon">Email</span>
+							<input type="email" class="form-control" name="email" id="user-email" value={{.current_user.Email}}>
+						</div>
 					</div>
+					
 					<div class="form-group">
-						<label for="user-location">城市</label>
-						<input type="location" class="form-control" name="location" id="user-location" value={{.current_user.Location}}>
-					</div>
-					<div class="form-group">
-						<label for="user-github">GitHub</label>
-						<div class="input-group col-xs-6">
-							<span class="input-group-addon" id="twitter-addon">github.com/</span>
-							<input type="text" class="form-control" name="github" id="user-github" aria-describedby="github-addon" value={{.current_user.GitHub}}>
+						<div class="input-group col-xs-9">
+							<span class="input-group-addon" id="twitter-addon">姓名</span>
+							<input type="text" class="form-control" name="fullname" id="user-fullname" aria-describedby="github-addon" value={{.current_user.Fullname}}>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="user-twitter">Twitter</label>
-						<div class="input-group col-xs-6">
-							<span class="input-group-addon" id="twitter-addon">@</span>
-							<input type="text" class="form-control" name="twitter" id="user-twitter" aria-describedby="twitter-addon" value={{.current_user.Twitter}}>
+						<div class="input-group col-xs-9">
+							<span class="input-group-addon" id="twitter-addon">学号</span>
+							<input type="text" class="form-control" name="studentNo" id="user-studentNo" aria-describedby="twitter-addon" value={{.current_user.StudentNo}}>
 						</div>
 					</div>
+
+					<div class="form-group">
+						<div class="input-group col-xs-9">
+							<span class="input-group-addon" id="twitter-addon">院系</span>
+							<input type="text" class="form-control" name="profession" id="user-profession" aria-describedby="twitter-addon" value={{.current_user.Profession}}>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group col-xs-9">
+							<span class="input-group-addon" id="twitter-addon">学校</span>
+							<input type="text" class="form-control" name="school" id="user-school" aria-describedby="twitter-addon" value={{.current_user.School}}>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="input-group col-xs-9">
+							<span class="input-group-addon" id="twitter-addon">城市</span>
+							<input type="location" class="form-control" name="location" id="user-location" value={{.current_user.Location}}>
+						</div>
+					</div>
+
 					<div class="form-group">
 						<label for="user-tagline">一句话介绍自己</label>
 						<input type="text" class="form-control" name="tagline" id="user-tagline" value={{.current_user.Tagline}}>

@@ -1,7 +1,7 @@
 package models
 
 import (
-	"crypto/md5"
+	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 	"github.com/revel/revel"
@@ -24,6 +24,15 @@ type User struct {
 	Tagline     string
 	Description string
 	Location    string
+
+	Fullname    string
+    StudentNo   string
+    Profession  string
+    School      string
+    OpenID      string
+    Role        uint
+
+
 	Topics      []Topic
 	Replies     []Reply
 }
@@ -88,10 +97,10 @@ func PushNotifyInfoToUser(userId int32, note Notification, isNew bool) {
 	go PushMessage(u.NotifyChannelId(), &info)
 }
 
-func (u User) EncodePassword(raw string) (md5Digest string) {
+func (u User) EncodePassword(raw string) (hash string) {
 	data := []byte(raw)
-	result := md5.Sum(data)
-	md5Digest = hex.EncodeToString(result[:])
+	result := sha256.Sum256(data)
+	hash = hex.EncodeToString(result[:])
 	return
 }
 
@@ -153,8 +162,10 @@ func UpdateUserProfile(u User) (user User, v revel.Validation) {
 		Email:       u.Email,
 		Location:    u.Location,
 		Description: u.Description,
-		GitHub:      u.GitHub,
-		Twitter:     u.Twitter,
+		Fullname:    u.Fullname,
+	    StudentNo: 	 u.StudentNo,
+		Profession:  u.Profession,
+		School:      u.School,
 		Tagline:     u.Tagline,
 	}
 	err := db.First(&u, u.Id).Updates(willUpdateUser).Error
