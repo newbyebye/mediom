@@ -16,6 +16,26 @@ type App struct {
 	currentUser *User
 }
 
+type RestController struct {
+    App
+}
+
+type Response struct{
+    Success bool            `json:"success"`
+    Data    interface{}     `json:"data"`
+    Error   string          `json:"error`
+}
+
+func (c *Response) error(err error) {
+    fmt.Printf("error %v.\n", err)
+    c.Success = (err == nil)
+
+    if !c.Success {
+        c.Error = err.Error()
+    }
+}
+
+
 const (
 	JSON_CODE_NO_LOGIN = -1
 )

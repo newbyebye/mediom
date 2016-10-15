@@ -32,9 +32,16 @@ type User struct {
     OpenID      string
     Role        uint
 
-
 	Topics      []Topic
 	Replies     []Reply
+}
+
+func DefaultSelect() string {
+    return "id,created_at,updated_at,login,fullname,profession,school,avatar,location"
+}
+
+func AdminSelect() string {
+	return "id,created_at,updated_at,login,fullname,profession,school,avatar,email,student_no"
 }
 
 func (u User) BeforeCreate() error {
@@ -202,6 +209,11 @@ func FindUserByLogin(login string) (u User, err error) {
 	return
 }
 
+func FindUserById(id int) (u User, err error) {
+	err = db.Where("id = ?", id).First(&u).Error
+	return
+}
+
 func UsersCountCached() (count int) {
 	if err := cache.Get("users/total", &count); err != nil {
 		if err = db.Model(User{}).Count(&count).Error; err == nil {
@@ -211,3 +223,6 @@ func UsersCountCached() (count int) {
 
 	return
 }
+
+
+

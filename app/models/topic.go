@@ -6,6 +6,7 @@ import (
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
 	"time"
+	"github.com/jinzhu/gorm"
 )
 
 
@@ -30,6 +31,10 @@ type Topic struct {
 	StarsCount         int32 `sql:"not null; default: 0"`
 	WatchesCount       int32 `sql:"not null; default: 0"`
 	Rank               int32 `sql:"not null; default: 0"`
+	Lesson             *Lesson
+	RegisterCount      int32  `gorm:"-"`
+
+	RegisterUsers      []User `gorm:"many2many:user_topics;"`
 }
 
 const (
@@ -83,6 +88,29 @@ func FindTopicPages(channel string, nodeId, page, perPage int) (topics []Topic, 
 	pageInfo.PerPage = perPage
 	pageInfo.Paginate(page).Find(&topics)
 	return
+}
+
+// for restful
+func FindTopic(user *User, channel string, skip, limit int) (topics []Topic) {
+	var pageInfo = Pagination{}
+	pageInfo.Query = db.Model(&Topic{}).Preload("User", func(db *gorm.DB) *gorm.DB {
+        return db.Select(DefaultSelect())
+	}).Preload("Node")
+
+	switch channel {
+	case "recent":
+		pageInfo.Query = pageInfo.Query.Order("id desc")
+	case "popular":
+		pageInfo.Query = pageInfo.Query.Where("rank = 1 or stars_count >= 5")
+		pageInfo.Query = pageInfo.Query.Order("last_active_mark desc, id desc")
+	case "owner":
+		pageInfo.Query = pageInfo.Query.Where("rank >= 0 And user_id = ?", user.Id).Order("last_active_mark asc, id asc")
+	default:
+		pageInfo.Query = pageInfo.Query.Where("rank >= 0").Order("last_active_mark asc, id asc")
+	}
+	pageInfo.Path = "/topics"
+	pageInfo.Offset(skip, limit).Find(&topics)
+	return 
 }
 
 func CreateTopic(t *Topic) revel.Validation {

@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{javascript_include_tag "m"}}
+  {{stylesheet_link_tag "app"}}
+  <script>
+    window.sessionStorage.setItem("userId", {{.user.Id}});
+  </script>
+</head>
+<body>
+{{template "m/home-page.html" .}}
+{{template "m/class-page.html" .}}
+{{template "m/me-page.html" .}}
+{{template "m/register-page.html" .}}
+{{template "m/favourite-page.html" .}}
+{{template "m/game-page.html" .}}
+{{template "m/students-page.html" .}}
+<div id="highlight"> </div>
+</body>
+</html>

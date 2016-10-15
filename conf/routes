@@ -2,6 +2,8 @@ GET     /				Home.Index
 WS      /msg                      Home.Message
 GET     /search         Home.Search
 
+GET     /m              M.Index
+
 GET 		/signup 			Accounts.New
 POST   	/signup 			Accounts.Create
 GET 		/signin 			Accounts.Login
@@ -11,6 +13,23 @@ GET     /account/edit     Accounts.Edit
 POST    /account          Accounts.Update
 GET     /account/password     Accounts.Password
 POST    /account/password/update     Accounts.UpdatePassword
+
+# restful
+GET		/v1/posts/count	 		TopicsRestful.Count
+GET	    /v1/posts               TopicsRestful.Index
+
+GET     /v1/posts/owner/count   TopicsRestful.Count("owner")
+GET     /v1/posts/owner         TopicsRestful.Index("owner")
+
+GET     /v1/posts/:id/games     GameRestful.Index
+GET     /v1/posts/:id           TopicsRestful.Show
+GET     /v1/users/:id           UsersRestful.Show 
+GET     /v1/games/template      GameRestful.Template
+GET     /v1/games/template/:id  GameRestful.TemplateShow
+GET	    /v1/games/:id/win       GameRestful.Win
+GET     /v1/games/:id/stat      GameRestful.Stat
+GET     /v1/games/:id           GameRestful.Show
+
 
 GET     /topics           Topics.Index
 GET     /topics/feed           Topics.Feed

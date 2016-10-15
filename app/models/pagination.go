@@ -30,5 +30,11 @@ func (p *Pagination) Paginate(page int) *gorm.DB {
 	query := p.Query.Offset((p.Page - 1) * p.PerPage).Limit(p.PerPage)
 
 	return query
-
 }
+
+func (p *Pagination) Offset(skip int, limit int) *gorm.DB {
+	query := p.Query.Offset(skip).Limit(limit);
+
+	return query
+}
+

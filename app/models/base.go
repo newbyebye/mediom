@@ -19,6 +19,12 @@ type BaseModel struct {
 	DeletedAt *time.Time `sql:"index"`
 }
 
+type JsonModel struct{
+	Id        int32
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
+
 func (m BaseModel) NewRecord() bool {
 	return m.Id <= 0
 }
@@ -45,7 +51,7 @@ func InitDatabase() {
 	db.LogMode(true)
 	logger = Logger{log.New(os.Stdout, "  ", 0)}
 	db.SetLogger(logger)
-	db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").AutoMigrate(&User{}, &Topic{}, &Reply{}, &Node{}, &Followable{}, &Notification{}, &Setting{})
+	db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").AutoMigrate(&User{}, &Topic{}, &Reply{}, &Node{}, &Followable{}, &Notification{}, &Setting{}, &Lesson{}, &Game{})
 	db.Model(Node{}).AddIndex("index_on_parent_id", "parent_id")
 	db.Model(Node{}).AddIndex("index_on_parent_id_and_sort", "parent_id", "sort")
 	db.Model(User{}).AddUniqueIndex("index_on_login", "login")
@@ -58,6 +64,9 @@ func InitDatabase() {
 	db.Model(Notification{}).AddIndex("index_on_user_id", "user_id")
 	db.Model(Notification{}).AddIndex("index_on_notifyable", "notifyable_type", "notifyable_id")
 	db.Model(Setting{}).AddUniqueIndex("index_on_key", "key")
+	db.Model(Lesson{}).AddIndex("index_on_deleted_at", "deleted_at")
+	db.Model(Game{}).AddIndex("index_on_deleted_at", "deleted_at")
+
 	db.LogMode(true)
 
 	initPubsub()

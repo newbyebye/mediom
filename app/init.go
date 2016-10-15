@@ -27,11 +27,11 @@ func init() {
 	}
 
 	train.Config.AssetsPath = "app/assets"
-	/*
+	
 	if !revel.DevMode {
-		train.Config.AssetsPath = "src/github.com/newbyebye/app/assets"
+		train.Config.AssetsPath = "src/github.com/newbyebye/public/assets"
 	}
-	*/
+	
 	train.Config.SASS.DebugInfo = false
 	train.Config.SASS.LineNumbers = false
 	train.Config.Verbose = false
@@ -43,10 +43,10 @@ func init() {
 		models.InitDatabase()
 		initAdmin()
 
-		//if revel.DevMode {
+		if revel.DevMode {
 			train.ConfigureHttpHandler(nil)
 			revel.Filters = append([]revel.Filter{AssetsFilter}, revel.Filters...)
-		//}
+		}
 	})
 
 	revel.TemplateFuncs["javascript_include_tag"] = train.JavascriptTag
